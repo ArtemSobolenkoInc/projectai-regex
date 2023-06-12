@@ -1,0 +1,95 @@
+Regex
+ChatGPT
+Sure, I'd be happy to help with regex! "Regex" stands for regular expressions, a powerful tool used in programming for manipulating and matching text strings. Regex uses a sequence of characters to define a search pattern.
+
+Here are some basics of regex syntax:
+
+.: The dot matches any character except a newline.
+*: The asterisk matches zero or more of the preceding character or group.
++: The plus sign matches one or more of the preceding character or group.
+?: The question mark matches zero or one of the preceding character or group.
+[abc]: Matches any of the characters inside the brackets.
+(abc|def): Matches either the pattern 'abc' or 'def'.
+^: Matches the start of the line.
+$: Matches the end of the line.
+\d: Matches any digit.
+\D: Matches any non-digit character.
+\s: Matches any whitespace character.
+\S: Matches any non-whitespace character.
+\w: Matches any word character (equivalent to [a-zA-Z0-9_] in English).
+\W: Matches any non-word character.
+Escaping special characters: If you want to search for a character that's considered "special" in regex, like the period, you need to escape it with a backslash, like so: \.
+
+For example, to match any 3-letter word, you can use: \b\w\w\w\b where \b represents a word boundary.
+
+This is just a basic introduction to regex, there is much more to learn! Let me know if you have any specific questions or need help creating a regex pattern.
+
+
+
+
+
+User
+Use Case Title
+Compose regular expressions to efficiently search, match, and manipulate text patterns
+Use Case Description
+Compose regular expressions to search, match, or manipulate text within a string. Define a sequence of characters, metacharacters, and quantifiers that represent the desired pattern, while considering case sensitivity and whitespace. Adjust and optimize the regular expression. Implement it within the code to perform the desired text processing task, such as searching, validating, extracting, or replacing text.
+
+Acceptance criteria
+
+•	Compose a regular expression that successfully evaluates the maximum string length (8); it should return a match if the string length is within the acceptable range and a non-match if it is not.
+•	This regular expression should also validate that the string contains at least one uppercase letter, one lowercase letter, one digit, and one special character from a predefined list. These should return a match if the criteria are met and a non-match if they are not.
+•	This regular expression should validate that the string does not contain any whitespace characters (spaces, tabs, or newlines). This should return a non-match if any whitespace characters are found.
+•	The regular expressions should optimize for execution speed and simplicity. The regular expression should still fulfill all the above criteria.
+•	The regular expression should be tested on a variety of sample inputs and edge cases (10) to ensure the regex is functioning properly.
+•	The regular expression should be implemented within the code in a way that they can be used for various text processing tasks, such as searching, validating, extracting, or replacing text.
+•	Implementation should not introduce any unexpected behavior or bugs.
+•	Clear and concise documentation should be provided for the regular expression, explaining how it works, and any caveats or limitations.
+
+
+Technologies: 
+
+Java 
+- Java application should contain and be able to execute language/framework-specific regex implementation.
+- Java Gradle-based project 
+
+Use Case tasks
+•	Create regex implementation:
+	- Create the regex implementation code snippet according to the defined acceptance criteria. The code snippet should accept the string to match and return the Boolean matching result.
+ChatGPT
+Sure! Here's a Java code snippet that should meet your acceptance criteria:
+
+java
+Copy code
+import java.util.regex.*;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(validatePassword("Test1@bc")); // True
+        System.out.println(validatePassword("test@bc")); // False
+        System.out.println(validatePassword("Test1@bcdef")); // False
+        System.out.println(validatePassword(" Test1@bc ")); // False
+    }
+
+    public static boolean validatePassword(String password) {
+        // Maximum 8 characters long
+        // At least one uppercase, one lowercase, one digit, one special character
+        // No whitespace
+        String pattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{1,8}$";
+
+        Pattern compiledPattern = Pattern.compile(pattern);
+        Matcher matcher = compiledPattern.matcher(password);
+        return matcher.matches();
+    }
+}
+This Java code contains a validatePassword function, which uses a regex pattern to validate the password string according to the acceptance criteria:
+
+The ^ asserts the start of the line.
+The (?=.*[A-Z]) is a positive lookahead that checks for at least one uppercase letter.
+The (?=.*[a-z]) checks for at least one lowercase letter.
+The (?=.*\\d) checks for at least one digit.
+The (?=.*[@$!%*?&]) checks for at least one special character from the list @$!%*?&.
+The [A-Za-z\\d@$!%*?&]{1,8} checks for any character that is either a uppercase letter, lowercase letter, digit, or special character, and the {1,8} quantifier asserts that this should be between 1 to 8 characters long.
+The $ asserts the end of the line.
+If the password string matches this pattern, the validatePassword function will return true. If it does not match the pattern (such as if the password string is too long, contains whitespace, or doesn't contain at least one of each required type of character), the function will return false.
+
+The code also includes a main function with some example password strings to validate. The output of this code should be true, false, false, false respectively, indicating that only the first password string is valid according to the regex pattern.
