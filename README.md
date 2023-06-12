@@ -22,7 +22,7 @@ To run the Regular Expression Composer application on your local machine using G
 
 3. **Build the Application**: Navigate to the application directory in your terminal and run the following command to build the application using Gradle: `./gradlew build`
 
-4. **Run the Application: Once the build is successful, run the application. On Linux and MacOS, use the command: ./gradlew run --args='<input_string>', where <input_string> is the string you want to validate. For example, ./gradlew run --args='Password1@'. On Windows, use the command: gradlew.bat run --args='<input_string>'. For example, gradlew.bat run --args='Password1@'.
+4. **Run the Application: Once the build is successful, run the application. On Linux and MacOS, use the command: `./gradlew run --args='<input_string>'`, where `<input_string>` is the string you want to validate. For example, `./gradlew run --args='Password1@'`. On Windows, use the command: `gradlew.bat run --args='<input_string>'`. For example, `gradlew.bat run --args='Password1@'`.
 
 5. **Use the Application**: The application will evaluate the provided string against the regular expression and display whether it matches (true) or not (false).
 
