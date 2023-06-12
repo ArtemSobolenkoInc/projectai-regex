@@ -17,3 +17,12 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task run(type: JavaExec) {
+    main = 'Main' // Replace with your main class
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    if (project.hasProperty('appArgs')) {
+        args Eval.me(appArgs)
+    }
+}
